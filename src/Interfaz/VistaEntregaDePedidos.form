@@ -110,7 +110,7 @@
                           <Component id="MOTOCICLETA3" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="BARRERA" min="-2" pref="13" max="-2" attributes="0"/>
+                      <Component id="BARRERA" min="-2" pref="112" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
