@@ -1,24 +1,28 @@
-
 package MOTOCICLETAS;
 
 import Interfaz.VistaEntregaDePedidos;
-import static java.lang.Math.random;
 import javax.swing.JLabel;
 
 public class Carrera extends Thread {
     private JLabel etiqueta;
     private VistaEntregaDePedidos moto;
-    private int distanciaDeseada = 20; // La distancia deseada antes de detenerse
+    private double velocidad; // Velocidad basada en la distancia
 
-    public Carrera(JLabel etiqueta, VistaEntregaDePedidos moto) {
+    public Carrera(JLabel etiqueta, VistaEntregaDePedidos moto, double distancia) {
         this.etiqueta = etiqueta;
         this.moto = moto;
+        this.velocidad = calcularVelocidad(distancia);
+    }
+
+    private double calcularVelocidad(double distancia) {
+        // Define una relación velocidad/distancia adecuada según tus requisitos
+        // Puedes ajustar este valor según sea necesario
+        return distancia / 10.0; // Por ejemplo, 10 unidades de distancia = 1 unidad de velocidad
     }
 
     @Override
     public void run() {
         try {
-            int velocidad = (int) (Math.random() * 100); // Velocidad aleatoria
             int distanciaInicial = moto.getBARRERA2().getLocation().x; // Punto de partida en BARRERA2
 
             // Mover la etiqueta al punto de partida en BARRERA2
@@ -26,15 +30,15 @@ public class Carrera extends Thread {
             moto.repaint();
 
             // Avanzar hacia BARRERA
-            while (etiqueta.getLocation().x < moto.getBARRERA().getLocation().x - distanciaDeseada) {
-                Thread.sleep(velocidad);
+            while (etiqueta.getLocation().x < moto.getBARRERA().getLocation().x - 20) { // Distancia deseada
+                Thread.sleep((long) velocidad); // Usa la velocidad calculada
                 etiqueta.setLocation(etiqueta.getLocation().x + 10, etiqueta.getLocation().y);
                 moto.repaint();
             }
 
             // Cuando llegan a la barrera, regresan al punto de partida en BARRERA2
             while (etiqueta.getLocation().x > distanciaInicial) {
-                Thread.sleep(velocidad);
+                Thread.sleep((long) velocidad); // Usa la velocidad calculada
                 etiqueta.setLocation(etiqueta.getLocation().x - 10, etiqueta.getLocation().y);
                 moto.repaint();
             }
@@ -43,5 +47,3 @@ public class Carrera extends Thread {
         }
     }
 }
-
-

@@ -22,7 +22,7 @@ import practica.pkg2ipc1.SerializablePedidos;
  */
 public class VistaPedidos extends javax.swing.JFrame {
  private ArrayList<Pedido> listaPedidos;
-
+private int numeroPedidosGuardados = 0;
  private DefaultTableModel modeloTabla;
 
   
@@ -268,41 +268,52 @@ public class VistaPedidos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-  // Código para guardar un pedido
-String distanciaStr = distancia.getText();
-String vehiculo = jComboBox1.getSelectedItem().toString();
-
-try {
-    double distancia = Double.parseDouble(distanciaStr);
-    if (distancia > 1 && distancia < 10) {
-        // La distancia es válida, puedes continuar con tu lógica aquí
-        System.out.println("Distancia válida: " + distancia);
-
-        // Calcular el total de los precios de los productos en el pedido
-        int total = calcularSumaTotalPrecios();
-
-        // Crear un nuevo pedido con la distancia, vehículo y total
-        Pedido pedido = new Pedido(distancia, vehiculo, total);
-
-        // Guardar el pedido usando la clase SerializablePedidos
-        SerializablePedidos.guardarPedido(pedido, "pedido.dat");
-
-        // Mostrar información del pedido (esto es opcional)
-        mostrarInformacionPedido();
+   if (numeroPedidosGuardados >= 3) {
+        JOptionPane.showMessageDialog(this, "No se pueden guardar más de 3 pedidos.", "Error", JOptionPane.ERROR_MESSAGE);
     } else {
-        JOptionPane.showMessageDialog(this, "La distancia debe estar entre 1 y 10.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-} catch (NumberFormatException ex) {
-    JOptionPane.showMessageDialog(this, "Ingrese una distancia válida.", "Error", JOptionPane.ERROR_MESSAGE);
-}
+        // Código para guardar un pedido
+        String distanciaStr = distancia.getText();
+        String vehiculo = jComboBox1.getSelectedItem().toString();
 
-// Código para cargar un pedido
-Pedido pedidoCargado = SerializablePedidos.cargarPedido("pedido.dat");
-if (pedidoCargado != null) {
-    // Aquí puedes usar el objeto pedidoCargado como desees
-    // Por ejemplo, puedes mostrar la distancia en el JLabel km
-    
-}
+        try {
+            double distancia = Double.parseDouble(distanciaStr);
+            if (distancia > 1 && distancia < 10) {
+                // La distancia es válida, puedes continuar con tu lógica aquí
+                System.out.println("Distancia válida: " + distancia);
+
+                // Calcular el total de los precios de los productos en el pedido
+                int total = calcularSumaTotalPrecios();
+
+                // Crear un nuevo pedido con la distancia, vehículo y total
+                Pedido pedido = new Pedido(distancia, vehiculo, total);
+
+                // Guardar el pedido usando la clase SerializablePedidos
+                SerializablePedidos.guardarPedido(pedido, "pedido" + numeroPedidosGuardados + ".dat");
+
+                // Mostrar información del pedido (esto es opcional)
+                mostrarInformacionPedido();
+
+                // Incrementar el contador de pedidos guardados
+                numeroPedidosGuardados++;
+
+                // Verificar si se llegó al límite de 3 pedidos
+                if (numeroPedidosGuardados >= 3) {
+                    jButton3.setEnabled(false); // Desactivar el botón cuando se alcanza el límite
+                }
+
+                // Eliminar el elemento seleccionado del JComboBox
+                jComboBox1.removeItem(vehiculo);
+            } else {
+                JOptionPane.showMessageDialog(this, "La distancia debe estar entre 1 y 10.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Ingrese una distancia válida.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+      Inicio inicio = new Inicio(); 
+         inicio.setVisible(true);
+ inicio.setLocationRelativeTo(null);   
+this.dispose();
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
