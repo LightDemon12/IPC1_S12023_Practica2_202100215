@@ -26,6 +26,7 @@ public class VistaAdmin extends javax.swing.JFrame {
     public VistaAdmin() {
 initComponents();
  cargarDatosEnTabla();
+ 
     // Crear una instancia de DatosGlobales1
    if (DatosGlobales1.getInstance().getComidas().isEmpty()) {
     DatosGlobales1 datosCargados = DatosGlobales1.deserializarDATOS("datos.dat");

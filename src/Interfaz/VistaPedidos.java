@@ -46,7 +46,19 @@ public class VistaPedidos extends javax.swing.JFrame {
 
 
     }
+ public void mostrarInformacionPedido() {
+    // Obtén la información del pedido desde DatosGlobales1
+    ArrayList<Pedido> pedidos = DatosGlobales1.getInstance().getPedidos();
 
+    // Aquí puedes recorrer la lista de pedidos y mostrar la información en tu nuevo JFrame
+    for (Pedido pedido : pedidos) {
+        System.out.println("Información del pedido:");
+        System.out.println("Distancia: " + pedido.getDistancia());
+        System.out.println("Vehículo: " + pedido.getVehiculo());
+        System.out.println("Total: " + pedido.getTotal());
+    }
+}
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -256,25 +268,36 @@ public class VistaPedidos extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
     String distanciaStr = distancia.getText();
-try {
-    double distancia = Double.parseDouble(distanciaStr);
-    if (distancia > 1 && distancia < 10) {
-        // La distancia es válida, puedes continuar con tu lógica aquí
-        System.out.println("Distancia válida: " + distancia);
+    String vehiculo = jComboBox1.getSelectedItem().toString();
 
-        // Ahora puedes continuar con tu lógica aquí
-        
-    } else {
-        JOptionPane.showMessageDialog(this, "La distancia debe estar entre 1 y 10.", "Error", JOptionPane.ERROR_MESSAGE);
+    try {
+        double distancia = Double.parseDouble(distanciaStr);
+        if (distancia > 1 && distancia < 10) {
+            // La distancia es válida, puedes continuar con tu lógica aquí
+            System.out.println("Distancia válida: " + distancia);
+
+            // Calcular el total de los precios de los productos en el pedido
+            int total = calcularSumaTotalPrecios();
+
+            // Crear un nuevo pedido con la distancia, vehículo y total
+            Pedido pedido = new Pedido(distancia, vehiculo, total);
+
+            // Agregar el pedido a la lista de pedidos en DatosGlobales1
+            DatosGlobales1.getInstance().agregarPedido(pedido);
+
+            // Guardar los datos
+            DatosGlobales1.getInstance().guardarDatos();
+
+            // Mostrar información del pedido (esto es opcional)
+            mostrarInformacionPedido();
+        } else {
+            JOptionPane.showMessageDialog(this, "La distancia debe estar entre 1 y 10.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(this, "Ingrese una distancia válida.", "Error", JOptionPane.ERROR_MESSAGE);
     }
-} catch (NumberFormatException ex) {
-    JOptionPane.showMessageDialog(this, "Ingrese una distancia válida.", "Error", JOptionPane.ERROR_MESSAGE);
-}
-
-       
-
     }//GEN-LAST:event_jButton3ActionPerformed
-// Calcular la suma total de precios
+
 public int calcularSumaTotalPrecios() {
     int sumaTotal = 0;
     DefaultTableModel modelo = (DefaultTableModel) jTable2.getModel();

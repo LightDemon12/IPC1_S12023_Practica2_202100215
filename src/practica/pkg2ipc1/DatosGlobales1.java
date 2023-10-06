@@ -63,20 +63,39 @@ private void cargarDatosSerializados() {
         }
     }
     public static DatosGlobales1 deserializarDATOS(String rutaArchivo) {
-        Comidas comida1 = new Comidas();
-        // ... Código para inicializar comidas predefinidas ...
+   ArrayList<Comidas> comidasPredefinidas = new ArrayList<>();
 
-        DatosGlobales1.getInstance().getComidas().add(comida1);
-        // ... Código para agregar comidas predefinidas ...
 
-        try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(rutaArchivo))) {
-            DatosGlobales1 datos = (DatosGlobales1) entrada.readObject();
-            System.out.println("Los datos se deserializaron correctamente desde " + rutaArchivo);
-            return datos;
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        }
+      Comidas comida1 = new Comidas();
+    comida1.setNombre("Hamburguesa");
+    comida1.setPrecio(10);  
+    comidasPredefinidas.add(comida1);
+
+    Comidas comida2 = new Comidas();
+    comida2.setNombre("Pizza");
+    comida2.setPrecio(8);
+    comidasPredefinidas.add(comida2);
+
+    Comidas comida3 = new Comidas();
+    comida3.setNombre("Papas Fritas");
+    comida3.setPrecio(4);
+    comidasPredefinidas.add(comida3);
+
+    Comidas comida4 = new Comidas();
+    comida4.setNombre("Ensalada");
+    comida4.setPrecio(6);
+    comidasPredefinidas.add(comida4);
+
+    DatosGlobales1.getInstance().getComidas().addAll(comidasPredefinidas);
+
+    try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(rutaArchivo))) {
+        DatosGlobales1 datos = (DatosGlobales1) entrada.readObject();
+        System.out.println("Los datos se deserializaron correctamente desde " + rutaArchivo);
+        return datos;
+    } catch (IOException | ClassNotFoundException e) {
+        e.printStackTrace();
+        return null;
     }
+}
 }
 

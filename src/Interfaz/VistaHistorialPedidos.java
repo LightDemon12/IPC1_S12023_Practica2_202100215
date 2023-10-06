@@ -7,6 +7,7 @@ package Interfaz;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import practica.pkg2ipc1.DatosGlobales1;
 import practica.pkg2ipc1.Pedido;
 
 /**
@@ -21,9 +22,11 @@ public class VistaHistorialPedidos extends javax.swing.JFrame {
      */
     public VistaHistorialPedidos() {
         initComponents();
-  
+  VistaPedidos vistaPedidos = new VistaPedidos();
+        vistaPedidos.mostrarInformacionPedido();
     }
- 
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
