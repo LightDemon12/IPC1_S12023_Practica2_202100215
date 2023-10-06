@@ -5,6 +5,8 @@
 package Interfaz;
 
 import MOTOCICLETAS.Carrera;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JLabel;
 import practica.pkg2ipc1.Pedido;
 import practica.pkg2ipc1.SerializablePedidos;
@@ -96,12 +98,12 @@ public class VistaEntregaDePedidos extends javax.swing.JFrame {
         BARRERA2.setOpaque(true);
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("MOTOCICLETA 1");
+        jLabel2.setText("MOTOCICLETA 3");
 
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("DISTANCIA");
 
-        jButton3.setText("MOTOCICLETA1");
+        jButton3.setText("MOTOCICLETA3");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -122,12 +124,12 @@ public class VistaEntregaDePedidos extends javax.swing.JFrame {
         });
 
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("MOTOCICLETA 3");
+        jLabel6.setText("MOTOCICLETA 1");
 
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("DISTANCIA");
 
-        jButton4.setText("MOTOCICLETA 3");
+        jButton4.setText("MOTOCICLETA 1");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -344,14 +346,24 @@ int distanciaDeseada = distanciaHastaBarrera - distanciaInicial;
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-             Pedido pedidoCargado = SerializablePedidos.cargarPedido("pedido.dat");
-if (pedidoCargado != null) {
-    // Aquí puedes usar el objeto pedidoCargado como desees
-    // Por ejemplo, puedes mostrar la distancia en el JLabel km
-    km.setText("Distancia: " + pedidoCargado.getDistancia());
+  Pedido pedidoCargado = SerializablePedidos.cargarPedido("pedido.dat");
+List<Pedido> historialPedidos = Pedido.getHistorialPedidos();
+  if (!historialPedidos.isEmpty()) {
+    km.setText("Distancia: " + historialPedidos.get(historialPedidos.size() - 1).getDistancia());
+}
+
+// Luego, puedes continuar con las verificaciones para km2 y km3 como se mencionó anteriormente
+if (historialPedidos.size() >= 2) {
+    km2.setText("Distancia: " + historialPedidos.get(historialPedidos.size() - 2).getDistancia());
+}
+
+if (historialPedidos.size() >= 3) {
+    km3.setText("Distancia: " + historialPedidos.get(historialPedidos.size() - 3).getDistancia());
+}
+
     }//GEN-LAST:event_jButton6ActionPerformed
     
-    }
+    
     
     
     

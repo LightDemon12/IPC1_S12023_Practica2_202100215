@@ -277,7 +277,7 @@ private int numeroPedidosGuardados = 0;
 
         try {
             double distancia = Double.parseDouble(distanciaStr);
-            if (distancia > 1 && distancia < 10) {
+            if (distancia > 0 && distancia < 11) {
                 // La distancia es válida, puedes continuar con tu lógica aquí
                 System.out.println("Distancia válida: " + distancia);
 
@@ -310,10 +310,7 @@ private int numeroPedidosGuardados = 0;
             JOptionPane.showMessageDialog(this, "Ingrese una distancia válida.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-      Inicio inicio = new Inicio(); 
-         inicio.setVisible(true);
- inicio.setLocationRelativeTo(null);   
-this.dispose();
+     
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
