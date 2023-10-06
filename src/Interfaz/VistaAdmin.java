@@ -9,7 +9,6 @@ package Interfaz;
 
 import practica.pkg2ipc1.Comidas;
 import practica.pkg2ipc1.DatosGlobales1;
-import static practica.pkg2ipc1.DatosGlobales1.comidas;
 
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -26,18 +25,19 @@ public class VistaAdmin extends javax.swing.JFrame {
 
     public VistaAdmin() {
 initComponents();
+ cargarDatosEnTabla();
     // Crear una instancia de DatosGlobales1
-    if (DatosGlobales1.getInstance().getComidas().isEmpty()) {
-        DatosGlobales1 datosCargados = DatosGlobales1.deserializarDATOS("datos.dat");
-        if (datosCargados != null) {
-            DatosGlobales1.getInstance().comidas = datosCargados.comidas;
-            System.out.println("Número de comidas cargadas: " + DatosGlobales1.getInstance().comidas.size());
-            LlenarTabla();
-        } else {
-            System.out.println("Error al deserializar los datos.");
-        }
+   if (DatosGlobales1.getInstance().getComidas().isEmpty()) {
+    DatosGlobales1 datosCargados = DatosGlobales1.deserializarDATOS("datos.dat");
+    if (datosCargados != null) {
+        DatosGlobales1.getInstance().getComidas().addAll(datosCargados.getComidas());
+        System.out.println("Número de comidas cargadas: " + DatosGlobales1.getInstance().getComidas().size());
+        LlenarTabla();
+    } else {
+        System.out.println("Error al deserializar los datos.");
     }
-    
+}
+
 
        
   
@@ -201,35 +201,59 @@ initComponents();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
- Comidas comidas = new Comidas();
-    comidas.setNombre(txtnombre.getText());
-    comidas.setPrecio(Integer.parseInt(txtprecio.getText()));
+Comidas comidas = new Comidas();
+comidas.setNombre(txtnombre.getText());
+comidas.setPrecio(Integer.parseInt(txtprecio.getText()));
 
-    DatosGlobales1.getInstance().comidas.add(comidas);
+DatosGlobales1.getInstance().getComidas().add(comidas);
 
-    System.out.println("Tamaño de DatosGlobales1.comidas: " + DatosGlobales1.getInstance().comidas.size());
-    LlenarTabla();
-    DatosGlobales1.getInstance().guardarDatos();
+System.out.println("Tamaño de DatosGlobales1.comidas: " + DatosGlobales1.getInstance().getComidas().size());
+LlenarTabla();
+DatosGlobales1.getInstance().guardarDatos();
+
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-  int eliminarFiLa= TablaProductos.getSelectedRow();
-     if (eliminarFiLa>=0){
-         DatosGlobales1.comidas.remove(eliminarFiLa);
-            LlenarTabla();
+  
+int eliminarFila = TablaProductos.getSelectedRow();
+if (eliminarFila >= 0) {
+    DatosGlobales1 datosGlobales = DatosGlobales1.getInstance();
+    datosGlobales.getComidas().remove(eliminarFila);
+    
+    // También elimina la fila de la tabla
+    DefaultTableModel modeloDatosl = (DefaultTableModel) TablaProductos.getModel();
+    modeloDatosl.removeRow(eliminarFila);
+    
+    // Luego, guarda los datos actualizados
+    datosGlobales.guardarDatos();
+}
+
+
     
     }//GEN-LAST:event_jButton3ActionPerformed
+    private void cargarDatosEnTabla() {
+        DefaultTableModel modeloDefaultTableModel = new DefaultTableModel(new String[]{"Producto", "Precio"}, DatosGlobales1.getInstance().getComidas().size());
+        TablaProductos.setModel(modeloDefaultTableModel);
+        TableModel modeloDatosl = TablaProductos.getModel();
+        for (int i = 0; i < DatosGlobales1.getInstance().getComidas().size(); i++) {
+            Comidas comidas = DatosGlobales1.getInstance().getComidas().get(i);
+            modeloDatosl.setValueAt(comidas.getNombre(), i, 0);
+            modeloDatosl.setValueAt(comidas.getPrecio(), i, 1);
+        }
     }
 public void LlenarTabla (){
-     DefaultTableModel modeloDefaultTableModel = new DefaultTableModel(new String[]{"Producto", "Precio"}, DatosGlobales1.comidas.size());
-       TablaProductos.setModel(modeloDefaultTableModel);
-       TableModel modeloDatosl = TablaProductos.getModel();
-     for (int i = 0; i < DatosGlobales1.comidas.size(); i++) {
-            Comidas comidas = DatosGlobales1.comidas.get(i);
-            modeloDatosl.setValueAt(comidas.getNombre(), i, 0);
-        modeloDatosl.setValueAt(comidas.getPrecio(), i, 1);
+     DefaultTableModel modeloDefaultTableModel = new DefaultTableModel(new String[]{"Producto", "Precio"}, DatosGlobales1.getInstance().getComidas().size());
+TablaProductos.setModel(modeloDefaultTableModel);
+TableModel modeloDatosl = TablaProductos.getModel();
+for (int i = 0; i < DatosGlobales1.getInstance().getComidas().size(); i++) {
+    Comidas comidas = DatosGlobales1.getInstance().getComidas().get(i);
+    modeloDatosl.setValueAt(comidas.getNombre(), i, 0);
+    modeloDatosl.setValueAt(comidas.getPrecio(), i, 1);
+}
+
           
-       }
+       
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

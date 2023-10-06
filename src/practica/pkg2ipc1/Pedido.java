@@ -6,10 +6,6 @@ package practica.pkg2ipc1;
 
 import java.io.Serializable;
 
-/**
- *
- * @author LightDemon12
- */
 public class Pedido implements Serializable {
     private double distancia;
     private String vehiculo;
@@ -33,4 +29,3 @@ public class Pedido implements Serializable {
         return total;
     }
 }
-

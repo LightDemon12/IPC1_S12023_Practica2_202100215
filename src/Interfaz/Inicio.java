@@ -4,20 +4,25 @@
  */
 package Interfaz;
 
+import java.util.ArrayList;
+import practica.pkg2ipc1.Comidas;
 import practica.pkg2ipc1.DatosGlobales1;
-import static practica.pkg2ipc1.DatosGlobales1.comidas;
+
 
 /**
  *
  * @author LightDemon12
  */
 public class Inicio extends javax.swing.JFrame {
-
+private DatosGlobales1 datosGlobales;
     /**
      * Creates new form Inicio
      */
     public Inicio() {
         initComponents();
+        datosGlobales = DatosGlobales1.getInstance();
+        ArrayList<Comidas> listaDeComidas = datosGlobales.getComidas();
+
     }
 
     /**

@@ -14,14 +14,14 @@ import practica.pkg2ipc1.Pedido;
  * @author LightDemon12
  */
 public class VistaHistorialPedidos extends javax.swing.JFrame {
-   private ArrayList<Pedido> pedidos = new ArrayList<>();
+  
   
     /**
      * Creates new form VistaHistorialPedidos
      */
     public VistaHistorialPedidos() {
         initComponents();
-         llenarTabla(pedidos);
+  
     }
  
 
@@ -100,14 +100,7 @@ public class VistaHistorialPedidos extends javax.swing.JFrame {
  inicio.setLocationRelativeTo(null);   
    this.dispose();  
     }//GEN-LAST:event_jButton1ActionPerformed
-public void llenarTabla(ArrayList<Pedido> pedidos) {
-    DefaultTableModel modelo = new DefaultTableModel(new String[]{"Distancia", "Vehículo", "Total"}, 0);
-    jTable1.setModel(modelo);
 
-    for (Pedido pedido : pedidos) {
-        modelo.addRow(new Object[]{pedido.getDistancia(), pedido.getVehiculo(), pedido.getTotal()});
-    }
-}
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
