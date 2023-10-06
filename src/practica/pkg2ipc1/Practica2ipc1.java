@@ -13,10 +13,9 @@ public class Practica2ipc1 {
        Inicio inicio = new  Inicio();
  inicio.setVisible(true);
  inicio.setLocationRelativeTo(null);   
-    PedidoManager pedidoManager = new PedidoManager();
+  
 
-        // Agregar un pedido
-       
+  
     
     }
 

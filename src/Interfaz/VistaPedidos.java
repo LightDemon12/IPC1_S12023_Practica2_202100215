@@ -255,36 +255,22 @@ public class VistaPedidos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-     String distanciaStr = distancia.getText();
-    try {
-        double distancia = Double.parseDouble(distanciaStr);
-        if (distancia >= 1 && distancia <= 10) {
-            // La distancia es válida, puedes continuar con tu lógica aquí
-            String vehiculo = jComboBox1.getSelectedItem().toString();
-            int total = Integer.parseInt(jLabeltotal.getText().replace("Total: Q", ""));
+    String distanciaStr = distancia.getText();
+try {
+    double distancia = Double.parseDouble(distanciaStr);
+    if (distancia > 1 && distancia < 10) {
+        // La distancia es válida, puedes continuar con tu lógica aquí
+        System.out.println("Distancia válida: " + distancia);
 
-            // Crea una instancia de la clase Pedido con los valores obtenidos
-            Pedido pedido = new Pedido(distancia, vehiculo, total);
-
-            // Agrega el pedido a la lista de pedidos
-            listaPedidos.add(pedido);
-
-            // Encuentra el índice en el que se agregó el pedido
-            int index = listaPedidos.indexOf(pedido);
-
-            // Imprime los detalles del pedido y el índice
-            System.out.println("Pedido tomado:");
-            System.out.println("Distancia: " + pedido.getDistancia());
-            System.out.println("Vehículo: " + pedido.getVehiculo());
-            System.out.println("Total: Q" + pedido.getTotal());
-            System.out.println("Agregado al índice: " + index);
-        } else {
-            JOptionPane.showMessageDialog(this, "La distancia debe estar entre 1 y 10.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(this, "Ingrese una distancia válida.", "Error", JOptionPane.ERROR_MESSAGE);
+        // Ahora puedes continuar con tu lógica aquí
+        
+    } else {
+        JOptionPane.showMessageDialog(this, "La distancia debe estar entre 1 y 10.", "Error", JOptionPane.ERROR_MESSAGE);
     }
-       
+} catch (NumberFormatException ex) {
+    JOptionPane.showMessageDialog(this, "Ingrese una distancia válida.", "Error", JOptionPane.ERROR_MESSAGE);
+}
+
        
 
     }//GEN-LAST:event_jButton3ActionPerformed
