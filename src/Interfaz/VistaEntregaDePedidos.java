@@ -30,7 +30,9 @@ public class VistaEntregaDePedidos extends javax.swing.JFrame {
       public JLabel getMOTOCICLETA3(){
         return MOTOCICLETA3;
     }
-    
+     public JLabel getBARRERA2() {
+        return BARRERA2;
+     }
      public JLabel getBARRERA(){
         return BARRERA;
     }
@@ -48,7 +50,9 @@ public class VistaEntregaDePedidos extends javax.swing.JFrame {
         MOTOCICLETA2 = new javax.swing.JLabel();
         MOTOCICLETA3 = new javax.swing.JLabel();
         BARRERA = new javax.swing.JLabel();
+        BARRERA2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,12 +77,17 @@ public class VistaEntregaDePedidos extends javax.swing.JFrame {
         BARRERA.setBackground(new java.awt.Color(255, 0, 0));
         BARRERA.setOpaque(true);
 
+        BARRERA2.setBackground(new java.awt.Color(255, 0, 0));
+        BARRERA2.setOpaque(true);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(165, 165, 165)
+                .addGap(154, 154, 154)
+                .addComponent(BARRERA2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(MOTOCICLETA2)
                     .addComponent(MOTOCICLETA1)
@@ -89,14 +98,15 @@ public class VistaEntregaDePedidos extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(51, 51, 51)
                 .addComponent(MOTOCICLETA1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addGap(68, 68, 68)
                 .addComponent(MOTOCICLETA2)
-                .addGap(76, 76, 76)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addComponent(MOTOCICLETA3)
-                .addGap(39, 39, 39))
+                .addGap(26, 26, 26))
             .addComponent(BARRERA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(BARRERA2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jButton2.setText("MANDAR MOTOS");
@@ -106,12 +116,19 @@ public class VistaEntregaDePedidos extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setText("MOTOCICLETA1");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(200, Short.MAX_VALUE)
+                .addContainerGap(161, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -120,7 +137,9 @@ public class VistaEntregaDePedidos extends javax.swing.JFrame {
                         .addComponent(jButton2)
                         .addGap(88, 88, 88)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(355, 355, 355))))
+                        .addGap(69, 69, 69)
+                        .addComponent(jButton3)
+                        .addGap(213, 213, 213))))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
@@ -133,7 +152,8 @@ public class VistaEntregaDePedidos extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addContainerGap())
         );
 
@@ -179,14 +199,21 @@ public class VistaEntregaDePedidos extends javax.swing.JFrame {
         moto3.start();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       Carrera moto1 = new Carrera(getMOTOCICLETA1(), this);
+    moto1.start();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BARRERA;
+    private javax.swing.JLabel BARRERA2;
     private javax.swing.JLabel MOTOCICLETA1;
     private javax.swing.JLabel MOTOCICLETA2;
     private javax.swing.JLabel MOTOCICLETA3;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
