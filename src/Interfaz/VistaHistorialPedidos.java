@@ -24,6 +24,7 @@ public class VistaHistorialPedidos extends javax.swing.JFrame {
         initComponents();
   VistaPedidos vistaPedidos = new VistaPedidos();
         vistaPedidos.mostrarInformacionPedido();
+        
     }
 
 

@@ -7,6 +7,8 @@ package Interfaz;
 import java.util.ArrayList;
 import practica.pkg2ipc1.Comidas;
 import practica.pkg2ipc1.DatosGlobales1;
+import practica.pkg2ipc1.Pedido;
+import practica.pkg2ipc1.SerializablePedidos;
 
 
 /**
@@ -15,6 +17,7 @@ import practica.pkg2ipc1.DatosGlobales1;
  */
 public class Inicio extends javax.swing.JFrame {
 private DatosGlobales1 datosGlobales;
+
     /**
      * Creates new form Inicio
      */
@@ -140,13 +143,14 @@ private DatosGlobales1 datosGlobales;
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    
         VistaHistorialPedidos vistaHistorialPedidos = new VistaHistorialPedidos();
         vistaHistorialPedidos.setVisible(true);
         vistaHistorialPedidos.setLocationRelativeTo(null);
          this.dispose();  
-         
+        
     }//GEN-LAST:event_jButton3ActionPerformed
-
+    
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
     VistaEntregaDePedidos vistaEntregaDePedidos = new VistaEntregaDePedidos();
     vistaEntregaDePedidos.setVisible(true);

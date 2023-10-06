@@ -13,6 +13,7 @@ import javax.swing.text.*;
 import java.awt.*;
 import practica.pkg2ipc1.DatosMotocicletas;
 import practica.pkg2ipc1.Pedido;
+import practica.pkg2ipc1.SerializablePedidos;
 
 
 /**
@@ -267,35 +268,42 @@ public class VistaPedidos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    String distanciaStr = distancia.getText();
-    String vehiculo = jComboBox1.getSelectedItem().toString();
+  // Código para guardar un pedido
+String distanciaStr = distancia.getText();
+String vehiculo = jComboBox1.getSelectedItem().toString();
 
-    try {
-        double distancia = Double.parseDouble(distanciaStr);
-        if (distancia > 1 && distancia < 10) {
-            // La distancia es válida, puedes continuar con tu lógica aquí
-            System.out.println("Distancia válida: " + distancia);
+try {
+    double distancia = Double.parseDouble(distanciaStr);
+    if (distancia > 1 && distancia < 10) {
+        // La distancia es válida, puedes continuar con tu lógica aquí
+        System.out.println("Distancia válida: " + distancia);
 
-            // Calcular el total de los precios de los productos en el pedido
-            int total = calcularSumaTotalPrecios();
+        // Calcular el total de los precios de los productos en el pedido
+        int total = calcularSumaTotalPrecios();
 
-            // Crear un nuevo pedido con la distancia, vehículo y total
-            Pedido pedido = new Pedido(distancia, vehiculo, total);
+        // Crear un nuevo pedido con la distancia, vehículo y total
+        Pedido pedido = new Pedido(distancia, vehiculo, total);
 
-            // Agregar el pedido a la lista de pedidos en DatosGlobales1
-            DatosGlobales1.getInstance().agregarPedido(pedido);
+        // Guardar el pedido usando la clase SerializablePedidos
+        SerializablePedidos.guardarPedido(pedido, "pedido.dat");
 
-            // Guardar los datos
-            DatosGlobales1.getInstance().guardarDatos();
-
-            // Mostrar información del pedido (esto es opcional)
-            mostrarInformacionPedido();
-        } else {
-            JOptionPane.showMessageDialog(this, "La distancia debe estar entre 1 y 10.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(this, "Ingrese una distancia válida.", "Error", JOptionPane.ERROR_MESSAGE);
+        // Mostrar información del pedido (esto es opcional)
+        mostrarInformacionPedido();
+    } else {
+        JOptionPane.showMessageDialog(this, "La distancia debe estar entre 1 y 10.", "Error", JOptionPane.ERROR_MESSAGE);
     }
+} catch (NumberFormatException ex) {
+    JOptionPane.showMessageDialog(this, "Ingrese una distancia válida.", "Error", JOptionPane.ERROR_MESSAGE);
+}
+
+// Código para cargar un pedido
+Pedido pedidoCargado = SerializablePedidos.cargarPedido("pedido.dat");
+if (pedidoCargado != null) {
+    // Aquí puedes usar el objeto pedidoCargado como desees
+    // Por ejemplo, puedes mostrar la distancia en el JLabel km
+    
+}
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
 public int calcularSumaTotalPrecios() {
