@@ -307,6 +307,7 @@ private int numeroPedidosGuardados = 0;
 
             // Eliminar el elemento seleccionado del JComboBox
             jComboBox1.removeItem(vehiculo);
+            
         } else {
             JOptionPane.showMessageDialog(this, "La distancia debe estar entre 1 y 10.", "Error", JOptionPane.ERROR_MESSAGE);
         }
