@@ -269,54 +269,57 @@ private int numeroPedidosGuardados = 0;
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-  if (numeroPedidosGuardados >= 3) {
-    JOptionPane.showMessageDialog(this, "No se pueden guardar más de 3 pedidos.", "Error", JOptionPane.ERROR_MESSAGE);
-} else {
-    // Código para guardar un pedido
-    String distanciaStr = distancia.getText();
-    String vehiculo = jComboBox1.getSelectedItem().toString();
+   if (numeroPedidosGuardados >= 3) {
+        JOptionPane.showMessageDialog(this, "No se pueden guardar más de 3 pedidos.", "Error", JOptionPane.ERROR_MESSAGE);
+    } else {
+        // Código para guardar un pedido
+        String distanciaStr = distancia.getText();
+        String vehiculo = jComboBox1.getSelectedItem().toString();
 
-    try {
-        double distancia = Double.parseDouble(distanciaStr);
-        if (distancia > 0 && distancia < 11) {
-            // La distancia es válida, puedes continuar con tu lógica aquí
-            System.out.println("Distancia válida: " + distancia);
+        try {
+            double distancia = Double.parseDouble(distanciaStr);
+            if (distancia > 0 && distancia < 11) {
+                // La distancia es válida, puedes continuar con tu lógica aquí
+                System.out.println("Distancia válida: " + distancia);
 
-            // Calcular el total de los precios de los productos en el pedido
-            int total = calcularSumaTotalPrecios();
+                // Calcular el total de los precios de los productos en el pedido
+                int total = calcularSumaTotalPrecios();
 
-            // Obtener la hora actual
-            LocalTime horaActual = LocalTime.now();
+                // Obtener la hora actual
+                LocalTime horaActual = LocalTime.now();
 
-            // Crear un nuevo pedido con la distancia, vehículo, total y hora actual
-            Pedido pedido = new Pedido(distancia, vehiculo, total, horaActual);
+                // Crear un nuevo pedido con la distancia, vehículo, total y hora actual
+                Pedido pedido = new Pedido(distancia, vehiculo, total, horaActual);
 
-            // Guardar el pedido usando la clase SerializablePedidos
-            SerializablePedidos.guardarPedido(pedido, "pedido" + numeroPedidosGuardados + ".dat");
+                // Guardar el pedido usando la clase SerializablePedidos
+                SerializablePedidos.guardarPedido(pedido, "pedido" + numeroPedidosGuardados + ".dat");
 
-            // Mostrar información del pedido (esto es opcional)
-            mostrarInformacionPedido();
+                // Mostrar información del pedido (esto es opcional)
+                mostrarInformacionPedido();
 
-            // Incrementar el contador de pedidos guardados
-            numeroPedidosGuardados++;
+                // Incrementar el contador de pedidos guardados
+                numeroPedidosGuardados++;
 
-            // Verificar si se llegó al límite de 3 pedidos
-            if (numeroPedidosGuardados >= 3) {
-                jButton3.setEnabled(false); // Desactivar el botón cuando se alcanza el límite
+                // Verificar si se llegó al límite de 3 pedidos
+                if (numeroPedidosGuardados >= 3) {
+                    jButton3.setEnabled(false); // Desactivar el botón cuando se alcanza el límite
+                }
+
+                // Eliminar el elemento seleccionado del JComboBox
+                jComboBox1.removeItem(vehiculo);
+                
+                // Vaciar la jTable2 (segundo JTable)
+                DefaultTableModel modeloSegundoJTable = (DefaultTableModel) jTable2.getModel();
+                modeloSegundoJTable.setRowCount(0);
+                   jLabeltotal.setText("" );
+                
+            } else {
+                JOptionPane.showMessageDialog(this, "La distancia debe estar entre 1 y 10.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-
-            // Eliminar el elemento seleccionado del JComboBox
-            jComboBox1.removeItem(vehiculo);
-            
-        } else {
-            JOptionPane.showMessageDialog(this, "La distancia debe estar entre 1 y 10.", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Ingrese una distancia válida.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(this, "Ingrese una distancia válida.", "Error", JOptionPane.ERROR_MESSAGE);
     }
-}
-
-     
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
