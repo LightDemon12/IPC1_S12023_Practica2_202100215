@@ -290,58 +290,55 @@ public void setDistanciaLabelText(String text) {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        List<Pedido> arrayDePedidos = Pedido.getHistorialPedidos(); // Reemplaza ObtenerArrayDePedidos() con la forma en que obtienes tu array de pedidos
+
     // Imprimir las posiciones iniciales de las motocicletas y la barrera
-System.out.println("Posición inicial de MOTOCICLETA1 en X: " + MOTOCICLETA1.getLocation().x);
-System.out.println("Posición inicial de MOTOCICLETA2 en X: " + MOTOCICLETA2.getLocation().x);
-System.out.println("Posición inicial de MOTOCICLETA3 en X: " + MOTOCICLETA3.getLocation().x);
-System.out.println("Posición inicial de MOTOCICLETA1 en Y: " + MOTOCICLETA1.getLocation().y);
-System.out.println("Posición inicial de MOTOCICLETA2 en Y: " + MOTOCICLETA2.getLocation().y);
-System.out.println("Posición inicial de MOTOCICLETA3 en Y: " + MOTOCICLETA3.getLocation().y);
-System.out.println("Posición inicial de la BARRERA en X: " + BARRERA.getLocation().x);
+    System.out.println("Posición inicial de MOTOCICLETA1 en X: " + MOTOCICLETA1.getLocation().x);
+    System.out.println("Posición inicial de MOTOCICLETA2 en X: " + MOTOCICLETA2.getLocation().x);
+    System.out.println("Posición inicial de MOTOCICLETA3 en X: " + MOTOCICLETA3.getLocation().x);
+    System.out.println("Posición inicial de MOTOCICLETA1 en Y: " + MOTOCICLETA1.getLocation().y);
+    System.out.println("Posición inicial de MOTOCICLETA2 en Y: " + MOTOCICLETA2.getLocation().y);
+    System.out.println("Posición inicial de MOTOCICLETA3 en Y: " + MOTOCICLETA3.getLocation().y);
+    System.out.println("Posición inicial de la BARRERA en X: " + BARRERA.getLocation().x);
 
-// Colocar las motocicletas en la posición inicial en X (0)
-MOTOCICLETA1.setLocation(0, MOTOCICLETA1.getLocation().y);
-MOTOCICLETA2.setLocation(0, MOTOCICLETA2.getLocation().y);
-MOTOCICLETA3.setLocation(0, MOTOCICLETA3.getLocation().y);
+    // Colocar las motocicletas en la posición inicial en X (0)
+    MOTOCICLETA1.setLocation(0, MOTOCICLETA1.getLocation().y);
+    MOTOCICLETA2.setLocation(0, MOTOCICLETA2.getLocation().y);
+    MOTOCICLETA3.setLocation(0, MOTOCICLETA3.getLocation().y);
 
-// Calcular la distancia deseada antes de llegar a la barrera
-int distanciaHastaBarrera = BARRERA.getLocation().x; // Posición de la barrera
-int distanciaInicial = 0; // Posición inicial en X (0)
-int distanciaDeseada = distanciaHastaBarrera - distanciaInicial;
+    // Calcular la distancia deseada antes de llegar a la barrera
+    int distanciaHastaBarrera = BARRERA.getLocation().x; // Posición de la barrera
+    int distanciaInicial = 0; // Posición inicial en X (0)
+    int distanciaDeseada = distanciaHastaBarrera - distanciaInicial;
 
-// Crear las motocicletas con la distancia deseada antes de llegar a la barrera
-Carrera moto1 = new Carrera(MOTOCICLETA1, this, distanciaDeseada);
-Carrera moto2 = new Carrera(MOTOCICLETA2, this, distanciaDeseada);
-Carrera moto3 = new Carrera(MOTOCICLETA3, this, distanciaDeseada);
+    // Crear las motocicletas con el array de pedidos
+    Carrera moto1 = new Carrera(MOTOCICLETA1, this, arrayDePedidos);
+    Carrera moto2 = new Carrera(MOTOCICLETA2, this, arrayDePedidos);
+    Carrera moto3 = new Carrera(MOTOCICLETA3, this, arrayDePedidos);
 
-// Iniciar las carreras de las motocicletas
-moto1.start();
-moto2.start();
-moto3.start();
+    // Iniciar las carreras de las motocicletas
+    moto1.start();
+    moto2.start();
+    moto3.start();
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-     int distanciaHastaBarrera = BARRERA.getLocation().x; // Posición de la barrera
-int distanciaInicial = 0; // Posición inicial en X (0)
-int distanciaDeseada = distanciaHastaBarrera - distanciaInicial;
-        Carrera moto1 = new Carrera(MOTOCICLETA1, this, distanciaDeseada);
+        List<Pedido> arrayDePedidos = Pedido.getHistorialPedidos(); 
+    
+   Carrera moto1 = new Carrera(MOTOCICLETA1, this, arrayDePedidos);
     moto1.start();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-     int distanciaHastaBarrera = BARRERA.getLocation().x; // Posición de la barrera
-int distanciaInicial = 0; // Posición inicial en X (0)
-int distanciaDeseada = distanciaHastaBarrera - distanciaInicial;
-        Carrera moto3 = new Carrera(MOTOCICLETA3, this, distanciaDeseada);
+      List<Pedido> arrayDePedidos = Pedido.getHistorialPedidos(); 
+       Carrera moto3 = new Carrera(MOTOCICLETA3, this, arrayDePedidos);
    moto3.start();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        int distanciaHastaBarrera = BARRERA.getLocation().x; // Posición de la barrera
-int distanciaInicial = 0; // Posición inicial en X (0)
-int distanciaDeseada = distanciaHastaBarrera - distanciaInicial;
-        Carrera moto2 = new Carrera(MOTOCICLETA2, this, distanciaDeseada);
+        List<Pedido> arrayDePedidos = Pedido.getHistorialPedidos(); 
+       Carrera moto2 = new Carrera(MOTOCICLETA2, this, arrayDePedidos);
    moto2.start();
     }//GEN-LAST:event_jButton5ActionPerformed
 
