@@ -25,7 +25,7 @@ public class Carrera3 extends Thread {
             double distancia = pedidos.get(2).getDistancia();
 
             // Ajustar la velocidad en función de la distancia (1 a 10)
-            return distancia * 10.0;
+            return 100.0 / distancia ;
         } else {
             // Manejar el caso en que la lista de pedidos esté vacía
             return 0.0;
