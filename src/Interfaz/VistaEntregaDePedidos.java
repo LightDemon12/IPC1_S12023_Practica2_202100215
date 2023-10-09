@@ -5,6 +5,8 @@
 package Interfaz;
 
 import MOTOCICLETAS.Carrera;
+import MOTOCICLETAS.Carrera2;
+import MOTOCICLETAS.Carrera3;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
@@ -313,8 +315,9 @@ public void setDistanciaLabelText(String text) {
 
     // Crear las motocicletas con el array de pedidos
     Carrera moto1 = new Carrera(MOTOCICLETA1, this, arrayDePedidos);
-    Carrera moto2 = new Carrera(MOTOCICLETA2, this, arrayDePedidos);
-    Carrera moto3 = new Carrera(MOTOCICLETA3, this, arrayDePedidos);
+   Carrera2 moto2 = new Carrera2(MOTOCICLETA2, this, arrayDePedidos);
+ Carrera3 moto3 = new Carrera3(MOTOCICLETA3, this, arrayDePedidos);
+
 
     // Iniciar las carreras de las motocicletas
     moto1.start();
@@ -332,13 +335,14 @@ public void setDistanciaLabelText(String text) {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
       List<Pedido> arrayDePedidos = Pedido.getHistorialPedidos(); 
-       Carrera moto3 = new Carrera(MOTOCICLETA3, this, arrayDePedidos);
+    Carrera3 moto3 = new Carrera3(MOTOCICLETA3, this, arrayDePedidos);
+
    moto3.start();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         List<Pedido> arrayDePedidos = Pedido.getHistorialPedidos(); 
-       Carrera moto2 = new Carrera(MOTOCICLETA2, this, arrayDePedidos);
+      Carrera2 moto2 = new Carrera2(MOTOCICLETA2, this, arrayDePedidos);
    moto2.start();
     }//GEN-LAST:event_jButton5ActionPerformed
 
