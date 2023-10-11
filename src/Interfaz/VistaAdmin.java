@@ -7,6 +7,7 @@ package Interfaz;
 
 
 
+import javax.swing.JOptionPane;
 import practica.pkg2ipc1.Comidas;
 import practica.pkg2ipc1.DatosGlobales1;
 
@@ -204,13 +205,22 @@ initComponents();
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 Comidas comidas = new Comidas();
 comidas.setNombre(txtnombre.getText());
-comidas.setPrecio(Integer.parseInt(txtprecio.getText()));
 
-DatosGlobales1.getInstance().getComidas().add(comidas);
+try {
+    double precio = Double.parseDouble(txtprecio.getText());
+    if (precio > 0) {
+        comidas.setPrecio((int) precio);
+        DatosGlobales1.getInstance().getComidas().add(comidas);
+        System.out.println("Tamaño de DatosGlobales1.comidas: " + DatosGlobales1.getInstance().getComidas().size());
+        LlenarTabla();
+        DatosGlobales1.getInstance().guardarDatos();
+    } else {
+        JOptionPane.showMessageDialog(this, "El precio debe ser mayor que 0.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+} catch (NumberFormatException e) {
+    JOptionPane.showMessageDialog(this, "Error: El valor de precio no es un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+}
 
-System.out.println("Tamaño de DatosGlobales1.comidas: " + DatosGlobales1.getInstance().getComidas().size());
-LlenarTabla();
-DatosGlobales1.getInstance().guardarDatos();
 
     
     }//GEN-LAST:event_jButton1ActionPerformed
